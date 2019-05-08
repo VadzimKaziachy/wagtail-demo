@@ -1,0 +1,6 @@
+*.pyc
+.idea/
+demo/db.sqlite3
+demo/media
+demo/.env
+venv/
