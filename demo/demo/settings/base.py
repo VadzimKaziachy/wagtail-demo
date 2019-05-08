@@ -26,6 +26,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
+    'blog',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    # поиск в админке http://docs.wagtail.io/en/stable/reference/contrib/searchpromotions.html
+    'wagtail.contrib.table_block',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',

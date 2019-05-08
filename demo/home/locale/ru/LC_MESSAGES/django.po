@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-08 15:21+0300\n"
+"POT-Creation-Date: 2019-05-08 16:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,19 +19,23 @@ msgstr ""
 "10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%"
 "100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\home\models.py:12
+#: .\home\models.py:13
 msgid "Short description"
 msgstr "Краткое описание"
 
-#: .\home\models.py:19
+#: .\home\models.py:21
+msgid "Background image"
+msgstr ""
+
+#: .\home\models.py:27
 msgid "SEO keywords"
 msgstr "SEO ключевые слова"
 
-#: .\home\models.py:26 .\home\models.py:38
+#: .\home\models.py:35 .\home\models.py:47
 msgid "Home"
 msgstr "Главная"
 
-#: .\home\models.py:31
+#: .\home\models.py:40
 msgid "Common page configuration"
 msgstr "Общая конфигурация страницы"
 
