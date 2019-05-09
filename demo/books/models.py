@@ -3,8 +3,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.admin.edit_handlers import MultiFieldPanel, FieldPanel, InlinePanel
 from wagtail.core.models import Orderable, Page
+from wagtail.snippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 
 
 # ======================================================
@@ -63,5 +65,61 @@ class BookReview(Page, Post, Article):
 
     class Meta:
         verbose_name = _('Book review')
+
+
 # ======================================================
-# Create your models here.
+
+@register_snippet
+class Genre(models.Model):
+    genre = models.CharField(max_length=255)
+
+    panels = [
+        MultiFieldPanel([
+            FieldPanel('genre'),
+        ])
+    ]
+
+    def __str__(self):
+        return self.genre
+
+    class Meta:
+        verbose_name = _('Genre')
+
+
+# ======================================================
+@register_snippet
+class PublishingHouse(ClusterableModel):
+    name = models.CharField(verbose_name=_('Name'),
+                            max_length=200)
+
+    panels = [
+        FieldPanel('name'),
+        InlinePanel('city', label='Pages')
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = _('Publishing house')
+
+
+class City(Orderable):
+    category = ParentalKey(
+        'books.PublishingHouse',
+        related_name='city'
+    )
+    city = models.CharField(verbose_name=_('City'),
+                            max_length=200,
+                            blank=True)
+    panels = [
+        FieldPanel('city')
+    ]
+
+    def __str__(self):
+        return self.category.name
+
+    class Meta(Orderable.Meta):
+        verbose_name = _('City')
+# ======================================================
