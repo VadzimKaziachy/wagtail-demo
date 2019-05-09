@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'contacts',
     'books',
     'cars',
+    'users',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -71,6 +72,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'demo.urls'
+
+# http://docs.wagtail.io/en/v2.1.1/advanced_topics/customisation/custom_user_models.html
+AUTH_USER_MODEL = 'users.User'
+WAGTAIL_USER_EDIT_FORM = 'users.forms.CustomUserEditForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['country']
 
 TEMPLATES = [
     {
