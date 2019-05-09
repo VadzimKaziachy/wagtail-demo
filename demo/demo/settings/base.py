@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'books',
     'cars',
     'users',
+    'events',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -181,3 +182,33 @@ WAGTAIL_SITE_NAME = "demo"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standart': {
+            'format': '%(asctime)s [%(levelname)s]: %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'standart'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'standart',
+            'filename': os.path.join(BASE_DIR, 'demo.log'),
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG'
+        },
+    }
+}
