@@ -7,6 +7,7 @@ from wagtail.core.models import Orderable, Page
 from modelcluster.fields import ParentalKey
 
 
+# ======================================================
 class Author(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=255)
     age = models.IntegerField(verbose_name=_('Age'))
@@ -32,4 +33,35 @@ class BookPage(Page):
         InlinePanel('related_links', label="Related Links"),
     ]
 
+
+# ======================================================
+
+# https://docs.djangoproject.com/en/2.2/topics/db/models/#multi-table-inheritance
+class Article(models.Model):
+    article = models.TextField(verbose_name=_('Article'))
+    article_id = models.AutoField(primary_key=True)
+
+    class Meta:
+        verbose_name = _('Article')
+
+
+class Post(models.Model):
+    post = models.TextField(verbose_name=_('Post'))
+    book_id = models.AutoField(primary_key=True)
+
+    class Meta:
+        verbose_name = _('Post')
+
+
+class BookReview(Page, Post, Article):
+    content_panels = [
+        MultiFieldPanel(Page.content_panels + [
+            FieldPanel('article'),
+            FieldPanel('post'),
+        ], heading=_('Book reviews'))
+    ]
+
+    class Meta:
+        verbose_name = _('Book review')
+# ======================================================
 # Create your models here.
